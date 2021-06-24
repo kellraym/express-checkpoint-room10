@@ -1,6 +1,7 @@
 var express = require('express');
 // const app = express()
 var router = express.Router();
+const fs =require('fs')
 const movieList = require('../mock-data/movieList.json')
 
 /* GET home page. */
@@ -40,4 +41,8 @@ router.get('/:id', (req, res) => {
   }
 })
 
+router.post('/', (req, res) => {
+// console.log(req.body)
+movieList.push(req.body).end()
+})
 module.exports = router;
