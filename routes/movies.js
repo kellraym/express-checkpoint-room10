@@ -42,7 +42,35 @@ router.get('/:id', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-// console.log(req.body)
-movieList.push(req.body).end()
+  fs.readFile('./mock-data/movieList.json', 'utf8', (err, data) => {
+    if (err){
+      throw(err)
+    } else {
+      const newFile = JSON.parse(data)
+      console.log(req.body)
+      const newMovie = req.body
+      newMovie.id = newFile.length + 1
+      newFile.push(newMovie)
+      console.log(newFile)
+
+      fs.writeFile('./mock-data/movieList.json', JSON.stringify(newFile, null, 4), (err) => {if(err) throw(err)})
+    }
+  })
+  res.end()
+})
+
+router.delete('/:id', (req, res) => {
+  fs.readFile('./mock-data/movieList.json', 'utf8', (err, data) => {
+    if (err){
+      throw(err)
+    } else {
+      const newFile = JSON.parse(data)
+      const filteredFile = newFile.filter(movie => {
+        return movie.id !== Number(req.params.id)
+      })
+      fs.writeFile('./mock-data/movieList.json', JSON.stringify(filteredFile, null, 4), (err) => {if(err) throw(err)})
+    }
+  })
+  res.end()
 })
 module.exports = router;
