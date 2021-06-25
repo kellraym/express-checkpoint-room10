@@ -4,6 +4,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const movieList = require('./mock-data/movieList.json')
 const movies = require('./routes/movies')
+const readCookie = require('./routes/readCookie')
+const setCookie = require('./routes/setCookie')
 
 
 
@@ -16,11 +18,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/movies', movies);
-
-// app.get('/movies', function(req, res, next) {
-//   console.log(movieList)
-//   res.json(movieList)
-// });
+app.use('/readCookie', readCookie);
+app.use('/setCookie', setCookie);
 
 app.listen(3001, () => {
   console.log(`It works`)

@@ -19,12 +19,5 @@
         "runtime": 94,
         "release_year": 2010,
         "director": "Pierre Morel"
-    },
-    {
-        "title": "Test",
-        "runtime": 80,
-        "release_year": 2000,
-        "director": "Name",
-        "id": 4
     }
 ]

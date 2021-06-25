@@ -1,5 +1,4 @@
 var express = require('express');
-// const app = express()
 var router = express.Router();
 const fs =require('fs')
 const movieList = require('../mock-data/movieList.json')
@@ -24,6 +23,7 @@ router.get('/', function (req, res, next) {
     res.status(200).send(filteredList)
   }
   //what is an invalid string?
+  res.end()
 });
 
 router.get('/:id', (req, res) => {
@@ -39,6 +39,7 @@ router.get('/:id', (req, res) => {
   } else {
     res.status(200).send(filteredList[0])
   }
+  res.end()
 })
 
 router.post('/', (req, res) => {
